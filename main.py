@@ -10,15 +10,6 @@ from sklearn.model_selection import train_test_split
 import sklearn.metrics
 
 data = pd.read_csv("stonks.csv")
-# print(data)
-
-data_stonks = data[(data["Index"] == "NYA")]
-data_stonks = data_stonks["Date"]
-
-data_stonks_y = data[(data["Index"] == "NYA")]
-data_stonks_y = data_stonks_y["Open"]
-
-print(data_stonks)
 
 app = Flask('app', template_folder = 'templates', static_folder = 'static')
 
@@ -26,8 +17,13 @@ app = Flask('app', template_folder = 'templates', static_folder = 'static')
 def hello_world():
   return render_template('hello_world.html')
 
-@app.route('/view')
-def view():
+@app.route('/', methods = ["POST"])
+def fetch():
+  stock = request.form.get('stock')
+  data_stonks = data[(data["Index"] == stock)]
+  data_stonks = data_stonks["Date"]
+  data_stonks_y = data[(data["Index"] == stock)]
+  data_stonks_y = data_stonks_y["Open"]
   fig = px.line(data, x= data_stonks, y=data_stonks_y)
   graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
   return render_template('index.html', graphJSON = graphJSON)
