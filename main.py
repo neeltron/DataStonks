@@ -24,6 +24,10 @@ app = Flask('app', template_folder = 'templates', static_folder = 'static')
 
 @app.route('/')
 def hello_world():
+  return render_template('hello_world.html')
+
+@app.route('/view')
+def view():
   fig = px.line(data, x= data_stonks, y=data_stonks_y)
   graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
   return render_template('index.html', graphJSON = graphJSON)
