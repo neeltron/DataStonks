@@ -23,10 +23,11 @@ def fetch():
   data_stonks = data[(data["Index"] == stock)]
   len_col = len(data_stonks)
   calamities = pd.read_csv("disasters.csv").tail(len_col)
-  calamities["declaration_date"] = calamities["declaration_date"].str.slice(0, 9, 1)
+  calamities["declaration_date"] = calamities["declaration_date"].str.slice(0, 10, 1)
+  calamities['declaration_date'] = pd.to_datetime(calamities['declaration_date']).dt.strftime('%d-%m-%Y')
   # calamities_date = calamities[(calamities['declaration_date'])]
   print(calamities["declaration_date"])
-  data_stonks = [data_stonks["Date"], calamities["declaration_date"]]
+  data_stonks = [calamities["declaration_date"], data_stonks["Date"]]
   data_stonks_y = data[(data["Index"] == stock)]
   data_stonks_y = data_stonks_y["Open"]
   fig = px.line(data, x= data_stonks, y=data_stonks_y)
