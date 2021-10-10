@@ -1,1 +1,1 @@
-# DataStonks
+# StockInsider
