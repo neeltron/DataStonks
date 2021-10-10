@@ -6,12 +6,14 @@ import plotly
 import plotly.express as px
 import json
 import plotly.io as pio
+from plotly.subplots import make_subplots
+import plotly.graph_objects as go
 
 from sklearn.model_selection import train_test_split
 import sklearn.metrics
 
 data = pd.read_csv("stonks.csv")
-
+print(data.Index.unique())
 app = Flask('app', template_folder = 'templates', static_folder = 'static')
 
 @app.route('/')
@@ -28,10 +30,14 @@ def fetch():
   calamities['declaration_date'] = pd.to_datetime(calamities['declaration_date']).dt.strftime('%d-%m-%Y')
   # calamities_date = calamities[(calamities['declaration_date'])]
   print(calamities["declaration_date"])
-  data_stonks = [calamities["declaration_date"], data_stonks["Date"]]
   data_stonks_y = data[(data["Index"] == stock)]
   data_stonks_y = data_stonks_y["Open"]
-  fig = px.line(data, x= data_stonks, y=data_stonks_y, template = "plotly_dark")
+  fig = make_subplots(
+    rows=1, cols=2,
+    subplot_titles=("First Subplot","Second Subplot"))
+  fig.add_trace(go.Scatter(x=data_stonks['Date'], y=data_stonks_y), row=1, col=1)
+  fig.add_trace(go.Scatter(x=calamities['declaration_date'], y=data_stonks_y), row=1, col=2)
+  fig.update_layout(template = "plotly_dark")
   graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
   return render_template('index.html', graphJSON = graphJSON)
 
