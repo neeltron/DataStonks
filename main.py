@@ -5,6 +5,7 @@ import numpy as np
 import plotly
 import plotly.express as px
 import json
+import plotly.io as pio
 
 from sklearn.model_selection import train_test_split
 import sklearn.metrics
@@ -30,7 +31,7 @@ def fetch():
   data_stonks = [calamities["declaration_date"], data_stonks["Date"]]
   data_stonks_y = data[(data["Index"] == stock)]
   data_stonks_y = data_stonks_y["Open"]
-  fig = px.line(data, x= data_stonks, y=data_stonks_y)
+  fig = px.line(data, x= data_stonks, y=data_stonks_y, template = "plotly_dark")
   graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
   return render_template('index.html', graphJSON = graphJSON)
 
