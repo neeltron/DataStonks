@@ -10,7 +10,6 @@ from sklearn.model_selection import train_test_split
 import sklearn.metrics
 
 data = pd.read_csv("stonks.csv")
-calamities = pd.read_csv("disasters.csv")
 
 app = Flask('app', template_folder = 'templates', static_folder = 'static')
 
@@ -22,6 +21,11 @@ def hello_world():
 def fetch():
   stock = request.form.get('stock')
   data_stonks = data[(data["Index"] == stock)]
+  len_col = len(data_stonks)
+  calamities = pd.read_csv("disasters.csv").tail(len_col)
+  calamities["declaration_date"] = calamities["declaration_date"].str.slice(0, 9, 1)
+  # calamities_date = calamities[(calamities['declaration_date'])]
+  print(calamities["declaration_date"])
   data_stonks = [data_stonks["Date"], calamities["declaration_date"]]
   data_stonks_y = data[(data["Index"] == stock)]
   data_stonks_y = data_stonks_y["Open"]
