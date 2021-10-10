@@ -34,9 +34,9 @@ def fetch():
   data_stonks_y = data_stonks_y["Open"]
   fig = make_subplots(
     rows=1, cols=2,
-    subplot_titles=("First Subplot","Second Subplot"))
-  fig.add_trace(go.Scatter(x=data_stonks['Date'], y=data_stonks_y), row=1, col=1)
-  fig.add_trace(go.Scatter(x=calamities['declaration_date'], y=data_stonks_y), row=1, col=2)
+    subplot_titles=("Calamities vs Date", stock + " Open vs Date"))
+  fig.add_trace(go.Scatter(x=calamities['declaration_date'], y=data_stonks_y, name = "During Calamity"), row=1, col=1)
+  fig.add_trace(go.Scatter(x=data_stonks['Date'], y=data_stonks_y, name = "Normal Days"), row=1, col=2)
   fig.update_layout(template = "plotly_dark")
   graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
   return render_template('index.html', graphJSON = graphJSON)
