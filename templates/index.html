@@ -1,8 +1,22 @@
 <!doctype html>
 <html>
+  <style>
+    body {
+      background: url('static/bg2.png') no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+    h1 {
+      font-family: Arial;
+    }
+  </style>
  <body bgcolor = "black">
-  <h1>DataStonks</h1>
+   <center>
+  <h1 style = "color: white;">StockInsider</h1>
   <div id="chart" class="chart"></div>
+   </center>
 </body><script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script type="text/javascript">
   var graphs = {{graphJSON | safe}};

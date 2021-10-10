@@ -1,27 +1,62 @@
 <!doctype html>
 <html>
+  <style>
+    body {
+  background: url('static/bg.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+h1 {
+      font-family: "Arial";
+    }
+  </style>
  <body bgcolor = "black">
-  <h1 style = "color: white;">DataStonks</h1>
+   <center>
+  <h1 style = "color: white;">StockInsider</h1>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
   <br>
   <form method="post">
-  <label for = "stocks">Select a Stock Market</label>
-  <select name = "stock" id = "stock">
-    <option value = "NYA">NYA</option>
-    <option value = "IXIC">IXIC</option>
-    <option value="HSI">HSI</option>
-    <option value="000001.SS"></option>
+  <select name = "stock" id = "stock" style="
+height: 50px;
+width: 300px;
+background: #F9F9F9;
+border: 1px solid #DDDDDD;
+box-sizing: border-box;
+border-radius: 5px;
+font-size: 25px;">
+    <option value = "NYA">New York Stock Exchange</option>
+    <option value = "IXIC">NASDAQ Composite</option>
+    <option value="HSI">Hang Seng Index</option>
+    <option value="000001.SS">Shanghai Stock Exchange Composite</option>
     <option value="GSPTSE">GSPTSE</option>
     <option value="399001.SZ">399001.SZ</option>
-    <option value="NSEI">NSEI</option>
+    <option value="NSEI">National Stock Exchange, India</option>
     <option value="GDAXI">GDAXI</option>
-    <option value="KS11">KS11</option>
+    <option value="KS11">Korea Composite Stock Exchange</option>
     <option value="SSMI">SSMI</option>
-    <option value="TWII">TWII</option>
+    <option value="TWII">Taiwan Weighed Index</option>
     <option value="J203.JO">J203.JO</option>
-    <option value="N225">N225</option>
-    <option value="N100">N100</option>
-  </select>
-  <button>Stonks!</button>
+    <option value="N225">Nikkei 225 Stock Index</option>
+    <option value="N100">Motilal Oswal Nasdaq 100 ETF</option>
+  </select><br><br>
+  <br>
+  <br>
+  <button style = "width: 162px;
+height: 52px;
+background: #23A6F0;
+color: white;
+font-family: Arial;
+font-size: 25px;
+border-radius: 5px;">Analyze</button>
   </form>
+   </center>
 </body>
 </html>
